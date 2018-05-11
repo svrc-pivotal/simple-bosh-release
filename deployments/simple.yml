@@ -1,0 +1,28 @@
+name: webapp
+
+releases:
+- name: simple-bosh-release
+  version: latest
+
+stemcells:
+- alias: trusty
+  name: ubuntu-trusty
+  version: latest
+
+instance_groups:
+
+instance_groups:
+- name: webapp
+  instances: 1
+  networks:
+  - name: default
+  stemcell: trusty
+  vm_type: small
+  azs: [z1]
+  jobs:
+  - name: webapp
+    release: simple-bosh-release
+    properties:
+      webapp:
+        admin: foo@bar.com
+        servername: myserver.example.com
